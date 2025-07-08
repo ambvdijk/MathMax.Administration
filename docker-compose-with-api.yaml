@@ -1,0 +1,28 @@
+
+services:
+
+  webapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ev-webapi
+    depends_on:
+      postgres:
+        condition: service_healthy
+      nats:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__Postgres: Host=postgres;Port=5432;Username=admin;Password=RqsW^zOW3ogC*LlS;Database=eventstore
+      NATS__Url: nats://nats:4222
+    ports:
+      - "5000:8080"  # map to the correct exposed port
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: always
+
+volumes:
+  pg_data:
