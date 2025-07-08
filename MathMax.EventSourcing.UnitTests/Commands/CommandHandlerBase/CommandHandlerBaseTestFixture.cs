@@ -45,7 +45,7 @@ public class CommandHandlerBaseTestFixture
     /// <summary>
     /// Creates a test command with default or specified values
     /// </summary>
-    public TestCommand CreateTestCommand(Guid? id = null, string name = "Test Command")
+    public static TestCommand CreateTestCommand(Guid? id = null, string name = "Test Command")
     {
         return new TestCommand 
         { 

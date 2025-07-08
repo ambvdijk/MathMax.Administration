@@ -90,7 +90,7 @@ public class CommandHandlerBaseConstructorTests : IClassFixture<CommandHandlerBa
         Assert.NotNull(handler);
         
         // Verify the handler implements the expected interface
-        Assert.IsAssignableFrom<ICommandHandler<TestCommand, TestEvent>>(handler);
+        Assert.IsType<ICommandHandler<TestCommand, TestEvent>>(handler, exactMatch: false);
     }
 
     [Theory]
