@@ -1,5 +1,9 @@
 {
     "cSpell.words": [
         "Npgsql"
-    ]
+    ],
+    "sonarlint.connectedMode.project": {
+        "connectionId": "mathmax80",
+        "projectKey": "MathMax80_MathMax.Administration"
+    }
 }

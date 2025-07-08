@@ -15,9 +15,14 @@ public class EventEnvelopeSerializer : IEventEnvelopeSerializer
             throw EventSerializationException<TEvent>.ForEmptyEvent(envelope);
         }
 
-        var payload = JsonSerializer.Serialize(envelope.Payload);
+        // Serialize to Utf8JsonWriter-compatible buffer
+        byte[] serializedPayload = JsonSerializer.SerializeToUtf8Bytes(envelope.Payload);
 
-        if (string.IsNullOrEmpty(payload))
+        // Parse directly to JsonDocument
+        using JsonDocument payload = JsonDocument.Parse(serializedPayload);
+
+
+        if (payload == null || payload.RootElement.ValueKind == JsonValueKind.Undefined || payload.RootElement.ValueKind == JsonValueKind.Null)
         {
             throw EventSerializationException<TEvent>.ForEmptyEvent(envelope);
         }
@@ -40,7 +45,7 @@ public class EventEnvelopeSerializer : IEventEnvelopeSerializer
 
         try
         {
-            if (string.IsNullOrEmpty(envelope.Payload))
+            if (envelope.Payload == null)
             {
                 throw EventDeserializationException.ForEmptyEvent(envelope);
             }

@@ -8,7 +8,7 @@ using MathMax.EventSourcing.Extensions;
 
 namespace MathMax.EventSourcing;
 
-public class NatsEventPublisher : IEventPublisher, IAsyncDisposable
+public sealed class NatsEventPublisher : IEventPublisher, IAsyncDisposable
 {
     private readonly NatsConnection _connection;
 
@@ -22,10 +22,7 @@ public class NatsEventPublisher : IEventPublisher, IAsyncDisposable
     public async Task PublishAsync(EventEnvelope envelope)
     {
         var json = JsonSerializer.Serialize(envelope);
-        
-        // Compose subject as "events.{eventType}", e.g. "events.CustomerCreated"
         var subject = $"events.{envelope.EventType}";
-
         await _connection.PublishAsync(subject, Encoding.UTF8.GetBytes(json));
     }
 

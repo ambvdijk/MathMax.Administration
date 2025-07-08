@@ -24,6 +24,7 @@ public static class Program
 
         // Add configuration
         builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        builder.Configuration.AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true);
         builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true);
         builder.Configuration.AddEnvironmentVariables();
 
@@ -80,7 +81,7 @@ public static class Program
 
         // Logs unhandled exceptions and returns a generic error response with a trace ID
         app.UseExceptionHandling();
-        
+
         // Logs error responses (status codes 400 and above) with method and path
         app.UseErrorResponseLogging();
 
