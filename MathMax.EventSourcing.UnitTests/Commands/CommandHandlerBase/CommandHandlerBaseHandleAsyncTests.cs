@@ -20,7 +20,7 @@ public class CommandHandlerBaseHandleAsyncTests : IClassFixture<CommandHandlerBa
     {
         // Arrange
         var dependencies = _fixture.CreateTestDependencies();
-        var command = _fixture.CreateTestCommand();
+        var command = CommandHandlerBaseTestFixture.CreateTestCommand();
         var expectedEvent = _fixture.CreateExpectedEvent(command);
         var serializedEnvelope = _fixture.CreateSerializedEnvelope(command.Id, 1);
         dependencies.SetupSerializerMock(serializedEnvelope);
@@ -37,7 +37,7 @@ public class CommandHandlerBaseHandleAsyncTests : IClassFixture<CommandHandlerBa
     {
         // Arrange
         var dependencies = _fixture.CreateTestDependencies();
-        var command = _fixture.CreateTestCommand();
+        var command = CommandHandlerBaseTestFixture.CreateTestCommand();
         var serializedEnvelope = _fixture.CreateSerializedEnvelope(command.Id, 1);
         dependencies.SetupSerializerMock(serializedEnvelope);
 
@@ -53,7 +53,7 @@ public class CommandHandlerBaseHandleAsyncTests : IClassFixture<CommandHandlerBa
     {
         // Arrange
         var dependencies = _fixture.CreateTestDependencies();
-        var command = _fixture.CreateTestCommand();
+        var command = CommandHandlerBaseTestFixture.CreateTestCommand();
         var serializedEnvelope = _fixture.CreateSerializedEnvelope(command.Id, 1);
         dependencies.SetupSerializerMock(serializedEnvelope);
 
@@ -69,7 +69,7 @@ public class CommandHandlerBaseHandleAsyncTests : IClassFixture<CommandHandlerBa
     {
         // Arrange
         var dependencies = _fixture.CreateTestDependencies();
-        var command = _fixture.CreateTestCommand();
+        var command = CommandHandlerBaseTestFixture.CreateTestCommand();
         var serializedEnvelope = _fixture.CreateSerializedEnvelope(command.Id, 1);
         dependencies.SetupSerializerMock(serializedEnvelope);
 
@@ -85,7 +85,7 @@ public class CommandHandlerBaseHandleAsyncTests : IClassFixture<CommandHandlerBa
     {
         // Arrange
         var dependencies = _fixture.CreateTestDependencies();
-        var command = _fixture.CreateTestCommand();
+        var command = CommandHandlerBaseTestFixture.CreateTestCommand();
         var serializedEnvelope = _fixture.CreateSerializedEnvelope(command.Id, 1);
         dependencies.SetupSerializerMock(serializedEnvelope);
         var spyHandler = dependencies.CreateSpyHandler();

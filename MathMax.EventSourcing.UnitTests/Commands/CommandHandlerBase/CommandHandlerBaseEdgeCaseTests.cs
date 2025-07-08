@@ -20,7 +20,7 @@ public class CommandHandlerBaseEdgeCaseTests : IClassFixture<CommandHandlerBaseT
     {
         // Arrange
         var dependencies = _fixture.CreateTestDependencies();
-        var command = _fixture.CreateTestCommand();
+        var command = CommandHandlerBaseTestFixture.CreateTestCommand();
         var handlerWithNullAggregateId = dependencies.CreateHandlerWithNullAggregateId();
         var serializedEnvelope = _fixture.CreateSerializedEnvelope(null, 1);
         dependencies.SetupSerializerMock(serializedEnvelope);
@@ -37,7 +37,7 @@ public class CommandHandlerBaseEdgeCaseTests : IClassFixture<CommandHandlerBaseT
     {
         // Arrange
         var dependencies = _fixture.CreateTestDependencies();
-        var command = _fixture.CreateTestCommand();
+        var command = CommandHandlerBaseTestFixture.CreateTestCommand();
         var handlerWithNullVersion = dependencies.CreateHandlerWithNullVersion();
         var serializedEnvelope = _fixture.CreateSerializedEnvelope(command.Id, null);
         dependencies.SetupSerializerMock(serializedEnvelope);
